@@ -10,9 +10,12 @@ export default async function Ships() {
     const shipsWithClaps = attachClapsToShips({claps, ships});
 
     return (
-        <main className={styles.main}>
+        <>
             <header><h1>Space Ships</h1></header>
-            <ShipCatalogue shipsWithClaps={shipsWithClaps}/>
-        </main>
+            <main className={styles.main}>
+                <ShipCatalogue shipsWithClaps={shipsWithClaps}/>
+            </main>
+            <footer>test</footer>
+        </>
     )
 }
