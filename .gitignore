@@ -40,3 +40,7 @@ next-env.d.ts
 /hexa-space.iml
 
 clap-store.json
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
