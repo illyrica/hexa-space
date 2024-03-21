@@ -1,8 +1,8 @@
 import {test, expect} from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
 
-test.describe('General', () => {
-    test('Index page should not have any automatically detectable accessibility issues', async ({page}) => {
+test.describe('Accessibility Scan for', () => {
+    test('Index page', async ({page}) => {
         await page.goto('/');
 
         const accessibilityScanResults = await new AxeBuilder({page}).analyze();
@@ -10,23 +10,42 @@ test.describe('General', () => {
         expect(accessibilityScanResults.violations).toEqual([]);
     });
 
-    test('Ships Page should not have any automatically detectable accessibility issues', async ({page}) => {
+    test('Ships Page', async ({page}) => {
         await page.goto('/ships');
 
         const accessibilityScanResults = await new AxeBuilder({page}).analyze();
 
+
         expect(accessibilityScanResults.violations).toEqual([]);
     });
-});
 
-test.describe('Specific part', () => {
-    test('Header should not have any automatically detectable accessibility issues', async ({page}) => {
+    test('Header', async ({page}) => {
         await page.goto('/ships');
 
         const accessibilityScanResults = await new AxeBuilder({page}).include('header').analyze();
 
         expect(accessibilityScanResults.violations).toEqual([]);
     });
+
+    //https://github.com/dequelabs/axe-core/blob/master/doc/API.md#axe-core-tags
+    test('Ships Page with Best Practices Tag', async ({page}) => {
+        await page.goto('/ships');
+
+        const accessibilityScanResults = await new AxeBuilder({page}).withTags(['best-practice']).analyze();
+
+        expect(accessibilityScanResults.violations).toEqual([]);
+    });
+
+    //https://github.com/dequelabs/axe-core/blob/master/doc/rule-descriptions.md
+    test('Ships Page disable color-contrast rule', async ({page}) => {
+        await page.goto('/ships');
+
+        const accessibilityScanResults = await new AxeBuilder({page}).disableRules(['color-contrast']).analyze();
+
+        expect(accessibilityScanResults.violations).toEqual([]);
+    });
 });
+
+
 
 
