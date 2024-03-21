@@ -19,10 +19,13 @@ test.describe('Accessibility Scan for', () => {
         expect(accessibilityScanResults.violations).toEqual([]);
     });
 
-    test('Header', async ({page}) => {
+    test('Modal component', async ({page}) => {
         await page.goto('/ships');
 
-        const accessibilityScanResults = await new AxeBuilder({page}).include('header').analyze();
+        await page.getByAltText('Custom Pink Death Star').click();
+
+
+        const accessibilityScanResults = await new AxeBuilder({page}).include('.modal').analyze();
 
         expect(accessibilityScanResults.violations).toEqual([]);
     });
