@@ -15,7 +15,6 @@ export default async function Ships() {
             <main className={styles.main}>
                 <ShipCatalogue shipsWithClaps={shipsWithClaps}/>
             </main>
-            <footer>test</footer>
         </>
     )
 }
